@@ -1,0 +1,1106 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.86);
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.header_scrolled {
+  background: rgba(255, 255, 255, 0.96);
+
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =========================================
+   HEADER INNER
+========================================= */
+
+.header_inner {
+  width: min(1400px, 100%);
+
+  min-height: 76px;
+
+  margin: auto;
+
+  padding: 0 30px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo_container {
+  flex-shrink: 0;
+}
+
+.logo_link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  text-decoration: none;
+
+  color: #171717;
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+
+  object-fit: cover;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 7px 20px rgba(255, 107, 53, 0.18);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.logo_link:hover .logo {
+  transform:
+    rotate(-6deg)
+    scale(1.06);
+
+  box-shadow:
+    0 12px 25px rgba(255, 107, 53, 0.3);
+}
+
+.brand_name {
+  font-size: 19px;
+
+  font-weight: 850;
+
+  letter-spacing: -0.6px;
+}
+
+.brand_name span {
+  color: #ff5a1f;
+}
+
+
+/* =========================================
+   DESKTOP NAV
+========================================= */
+
+.nav_items {
+  display: flex;
+
+  align-items: center;
+}
+
+.header_nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  list-style: none;
+}
+
+.header_nav li {
+  list-style: none;
+}
+
+
+/* =========================================
+   NAV LINK
+========================================= */
+
+.nav_link {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  min-height: 46px;
+
+  padding: 0 14px;
+
+  border-radius: 12px;
+
+  text-decoration: none;
+
+  color: #444;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.nav_link:hover {
+  color: #ff5a1f;
+
+  background: rgba(255, 90, 31, 0.07);
+
+  transform: translateY(-1px);
+}
+
+.nav_link.active {
+  color: #ff5a1f;
+
+  background: rgba(255, 90, 31, 0.08);
+}
+
+.nav_link.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 4px;
+
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #ff5a1f;
+
+  transform: translateX(-50%);
+
+  animation: activeDot 0.3s ease;
+}
+
+@keyframes activeDot {
+  from {
+    transform:
+      translateX(-50%)
+      scale(0);
+  }
+
+  to {
+    transform:
+      translateX(-50%)
+      scale(1);
+  }
+}
+
+.nav_icon {
+  font-size: 16px;
+
+  transition: transform 0.25s ease;
+}
+
+.nav_link:hover .nav_icon {
+  transform: scale(1.15);
+}
+
+
+/* =========================================
+   CART BADGE
+========================================= */
+
+.cart_badge {
+  min-width: 18px;
+  height: 18px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 5px;
+
+  border-radius: 50px;
+
+  background: #ff5a1f;
+
+  color: #fff;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  box-shadow:
+    0 3px 8px rgba(255, 90, 31, 0.3);
+
+  animation: badgePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+.Login {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  min-width: 112px;
+  height: 45px;
+
+  padding: 0 20px;
+
+  border: none;
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff713f,
+      #ff3d00
+    );
+
+  color: #fff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 8px 20px rgba(255, 77, 0, 0.22);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+.Login::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -130%;
+
+  width: 60%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.38),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.65s ease;
+}
+
+.Login:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 28px rgba(255, 77, 0, 0.32);
+
+  filter: saturate(1.08);
+}
+
+.Login:hover::before {
+  left: 140%;
+}
+
+.Login:active {
+  transform:
+    translateY(1px)
+    scale(0.97);
+}
+
+.login_user_icon {
+  display: inline-flex;
+
+  font-size: 18px;
+
+  transition: transform 0.25s ease;
+}
+
+.Login:hover .login_user_icon {
+  transform: translateX(3px);
+}
+
+.logout_btn {
+  background:
+    linear-gradient(
+      135deg,
+      #2f9e67,
+      #16834d
+    );
+
+  box-shadow:
+    0 8px 20px rgba(22, 131, 77, 0.2);
+}
+
+.logout_btn:hover {
+  box-shadow:
+    0 12px 28px rgba(22, 131, 77, 0.3);
+}
+
+.Login:focus-visible,
+.nav_link:focus-visible {
+  outline: 3px solid rgba(255, 107, 53, 0.28);
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================
+   MOBILE MENU TOGGLE
+========================================= */
+
+.menu_toggle {
+  display: none;
+
+  width: 46px;
+  height: 46px;
+
+  border: 1px solid #eee;
+
+  border-radius: 13px;
+
+  background: #fff;
+
+  cursor: pointer;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 5px;
+
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.menu_toggle:hover {
+  background: #fff5f1;
+
+  transform: scale(1.04);
+}
+
+.menu_toggle span {
+  width: 21px;
+  height: 2px;
+
+  border-radius: 10px;
+
+  background: #222;
+
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.menu_toggle.menu_open span:nth-child(1) {
+  transform:
+    translateY(7px)
+    rotate(45deg);
+}
+
+.menu_toggle.menu_open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu_toggle.menu_open span:nth-child(3) {
+  transform:
+    translateY(-7px)
+    rotate(-45deg);
+}
+
+
+/* =========================================
+   MOBILE OVERLAY
+========================================= */
+
+.mobile_overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 998;
+
+  background: rgba(0, 0, 0, 0.4);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+.overlay_visible {
+  opacity: 1;
+
+  visibility: visible;
+}
+
+
+/* =========================================
+   MOBILE MENU
+========================================= */
+
+.mobile_menu {
+  position: fixed;
+
+  top: 0;
+  right: 0;
+
+  z-index: 999;
+
+  width: min(390px, 88vw);
+
+  height: 100dvh;
+
+  padding: 25px 20px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fffaf7 100%
+    );
+
+  box-shadow:
+    -15px 0 50px rgba(0, 0, 0, 0.15);
+
+  transform: translateX(105%);
+
+  transition:
+    transform 0.4s
+    cubic-bezier(0.22, 1, 0.36, 1);
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+.mobile_menu_open {
+  transform: translateX(0);
+}
+
+
+/* =========================================
+   MOBILE HEADER
+========================================= */
+
+.mobile_menu_header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+
+  font-size: 20px;
+
+  font-weight: 800;
+}
+
+.mobile_close {
+  width: 40px;
+  height: 40px;
+
+  border: 0;
+
+  border-radius: 12px;
+
+  background: #f5f5f5;
+
+  color: #333;
+
+  font-size: 27px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+.mobile_close:hover {
+  background: #fff0eb;
+
+  color: #ff5a1f;
+
+  transform: rotate(90deg);
+}
+
+
+/* =========================================
+   MOBILE USER CARD
+========================================= */
+
+.mobile_user_card {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 16px;
+
+  margin-bottom: 20px;
+
+  border: 1px solid rgba(255, 90, 31, 0.1);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff3ed,
+      #fff9f6
+    );
+}
+
+.mobile_avatar {
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 15px;
+
+  background: #fff;
+
+  box-shadow:
+    0 5px 15px rgba(0, 0, 0, 0.06);
+
+  font-size: 21px;
+}
+
+.mobile_user_card strong {
+  display: block;
+
+  margin-bottom: 3px;
+
+  font-size: 14px;
+}
+
+.mobile_user_card p {
+  color: #888;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   MOBILE NAV
+========================================= */
+
+.mobile_nav {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.mobile_nav .nav_link {
+  width: 100%;
+
+  min-height: 56px;
+
+  padding: 0 14px;
+
+  border-radius: 14px;
+
+  font-size: 15px;
+
+  background: transparent;
+}
+
+.mobile_nav .nav_link:hover,
+.mobile_nav .nav_link.active {
+  background: #fff0eb;
+}
+
+.mobile_nav_icon {
+  width: 34px;
+}
+
+.mobile_nav_arrow {
+  margin-left: auto;
+
+  color: #aaa;
+
+  transition: transform 0.25s ease;
+}
+
+.mobile_nav .nav_link:hover .mobile_nav_arrow {
+  color: #ff5a1f;
+
+  transform: translateX(4px);
+}
+
+.mobile_cart_badge {
+  margin-left: 5px;
+}
+
+
+/* =========================================
+   MOBILE LOGIN
+========================================= */
+
+.mobile_login_btn {
+  width: 100%;
+
+  height: 52px;
+
+  margin-top: 20px;
+
+  border: 0;
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff713f,
+      #ff3d00
+    );
+
+  color: #fff;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 25px rgba(255, 77, 0, 0.22);
+
+  transition: 0.25s ease;
+}
+
+.mobile_login_btn:hover {
+  transform: translateY(-2px);
+}
+
+
+/* =========================================
+   MOBILE FOOTER
+========================================= */
+
+.mobile_menu_footer {
+  margin-top: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding-top: 20px;
+
+  color: #aaa;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1050px) {
+  .header_inner {
+    padding: 0 20px;
+
+    gap: 15px;
+  }
+
+  .brand_name {
+    display: none;
+  }
+
+  .nav_link {
+    padding: 0 10px;
+
+    font-size: 13px;
+  }
+
+  .Login {
+    min-width: 100px;
+
+    padding: 0 15px;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .header_inner {
+    min-height: 68px;
+
+    padding: 0 16px;
+  }
+
+  .logo {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 14px;
+  }
+
+  .brand_name {
+    display: block;
+
+    font-size: 17px;
+  }
+
+  .nav_items {
+    display: none;
+  }
+
+  .menu_toggle {
+    display: flex;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+  .brand_name {
+    font-size: 16px;
+  }
+
+  .header_inner {
+    padding: 0 12px;
+  }
+
+  .mobile_menu {
+    width: 92vw;
+  }
+}
+
+
+/* =========================================
+   VERY SMALL DEVICES
+========================================= */
+
+@media (max-width: 340px) {
+  .brand_name {
+    display: none;
+  }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* Status navigation item */
+.status_nav_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+/* Status pill */
+.online_status {
+  --status-color: #16a34a;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 9px 14px;
+  min-width: 96px;
+
+  border: 1px solid rgba(22, 163, 74, 0.22);
+  border-radius: 50px;
+
+  background: rgba(22, 163, 74, 0.08);
+  color: var(--status-color);
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  line-height: 1;
+
+  white-space: nowrap;
+  cursor: default;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* Green online state */
+.online_status.is_online {
+  --status-color: #16a34a;
+
+  background: rgba(22, 163, 74, 0.09);
+  border-color: rgba(22, 163, 74, 0.25);
+}
+
+/* Red offline state */
+.online_status.is_offline {
+  --status-color: #dc2626;
+
+  background: rgba(220, 38, 38, 0.08);
+  border-color: rgba(220, 38, 38, 0.25);
+}
+
+/* Indicator wrapper */
+.status_indicator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}
+
+/* Main status dot */
+.status_dot {
+  position: relative;
+  z-index: 1;
+
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+
+  background: var(--status-color);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--status-color) 45%, transparent);
+
+  transition: background 0.3s ease;
+}
+
+/* Animated pulse ring */
+.status_indicator::before {
+  content: "";
+
+  position: absolute;
+  inset: -2px;
+
+  border: 1px solid var(--status-color);
+  border-radius: 50%;
+
+  opacity: 0;
+  animation: statusPulse 2s ease-out infinite;
+}
+
+/* Disable pulse when offline */
+.is_offline .status_indicator::before {
+  animation: none;
+  opacity: 0;
+}
+
+/* Subtle hover interaction */
+.online_status:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px
+    color-mix(in srgb, var(--status-color) 15%, transparent);
+}
+
+/* Tooltip */
+.status_tooltip {
+  position: absolute;
+  z-index: 1000;
+
+  left: 50%;
+  top: calc(100% + 12px);
+
+  width: max-content;
+  max-width: 220px;
+
+  padding: 9px 12px;
+  border-radius: 8px;
+
+  background: #172033;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-align: center;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translate(-50%, -4px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+}
+
+/* Small tooltip arrow */
+.status_tooltip::before {
+  content: "";
+
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+
+  border: 6px solid transparent;
+  border-bottom-color: #172033;
+
+  transform: translateX(-50%);
+}
+
+/* Reveal tooltip */
+.online_status:hover .status_tooltip,
+.online_status:focus-visible .status_tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* Pulse animation */
+@keyframes statusPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: scale(2.3);
+    opacity: 0;
+  }
+}
+
+/* Responsive header */
+@media (max-width: 768px) {
+  .online_status {
+    min-width: auto;
+    gap: 7px;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .status_tooltip {
+    max-width: 180px;
+  }
+}
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .status_indicator::before {
+    animation: none;
+  }
+
+  .online_status,
+  .status_tooltip {
+    transition: none;
+  }
+}
+

@@ -1,0 +1,639 @@
+/* =========================================================
+   RESTAURANT CARD
+========================================================= */
+
+.res_card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(15, 23, 42, 0.07);
+  border-radius: 22px;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.06),
+    0 2px 6px rgba(15, 23, 42, 0.03);
+
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.res_card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(255, 91, 46, 0.18);
+
+  box-shadow:
+    0 22px 45px rgba(15, 23, 42, 0.12),
+    0 8px 18px rgba(255, 91, 46, 0.08);
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.res_image_wrapper {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  background: #f1f5f9;
+}
+
+
+.res_image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transform: scale(1);
+
+  transition:
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.5s ease;
+}
+
+
+.res_card:hover .res_image {
+  transform: scale(1.08);
+  filter: saturate(1.08);
+}
+
+
+/* =========================================================
+   IMAGE GRADIENT
+========================================================= */
+
+.res_image_overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.02) 20%,
+      rgba(0, 0, 0, 0.08) 50%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   RATING BADGE
+========================================================= */
+
+.rating_badge {
+  position: absolute;
+
+  left: 14px;
+  bottom: 14px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 7px 10px;
+
+  border-radius: 999px;
+
+  color: #ffffff;
+  background: rgba(20, 28, 24, 0.88);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-size: 13px;
+  font-weight: 800;
+
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+  z-index: 2;
+}
+
+
+.rating_star {
+  color: #ffd166;
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   DELIVERY BADGE
+========================================================= */
+
+.delivery_badge {
+  position: absolute;
+
+  right: 14px;
+  bottom: 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  padding: 7px 10px;
+
+  border-radius: 999px;
+
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.18);
+
+  border: 1px solid rgba(255, 255, 255, 0.28);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  z-index: 2;
+}
+
+
+.delivery_icon {
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   FAVORITE BUTTON
+========================================================= */
+
+.favorite_btn {
+  position: absolute;
+
+  top: 14px;
+  right: 14px;
+
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.22);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-size: 21px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+
+.favorite_btn:hover {
+  transform: scale(1.12);
+
+  color: #ff4d4d;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+
+.favorite_btn:active {
+  transform: scale(0.92);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+========================================================= */
+
+.res_card_content {
+  position: relative;
+
+  padding: 17px 17px 18px;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.res_title_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+
+.res_name {
+  margin: 0;
+
+  min-width: 0;
+
+  color: #111827;
+
+  font-size: clamp(16px, 1.4vw, 19px);
+  font-weight: 800;
+
+  line-height: 1.25;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.res_arrow {
+  flex-shrink: 0;
+
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  color: #ff5a36;
+  background: #fff1ed;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  opacity: 0;
+  transform: translateX(-5px);
+
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+
+.res_card:hover .res_arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+/* =========================================================
+   CUISINES
+========================================================= */
+
+.res_cuisines {
+  margin: 7px 0 14px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.res_meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+
+.res_price {
+  color: #374151;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+.res_delivery {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #374151;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+.res_location {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  margin: 10px 0 0;
+
+  color: #8a8f98;
+
+  font-size: 11px;
+  font-weight: 500;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.res_location span {
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   HOVER LINE
+========================================================= */
+
+.card_hover_line {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 3px;
+
+  background: linear-gradient(
+    90deg,
+    #ff5a36,
+    #ff8a65,
+    #ff5a36
+  );
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 0.45s ease;
+}
+
+
+.res_card:hover .card_hover_line {
+  transform: scaleX(1);
+}
+
+
+/* =========================================================
+   SHINE ANIMATION
+========================================================= */
+
+.res_image_wrapper::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 60%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  pointer-events: none;
+
+  transition: left 0.7s ease;
+}
+
+
+.res_card:hover .res_image_wrapper::after {
+  left: 140%;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+  .res_card {
+    border-radius: 18px;
+  }
+
+  .res_card_content {
+    padding: 15px;
+  }
+
+  .rating_badge,
+  .delivery_badge {
+    bottom: 11px;
+  }
+
+  .favorite_btn {
+    top: 11px;
+    right: 11px;
+
+    width: 35px;
+    height: 35px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .res_card {
+    border-radius: 17px;
+  }
+
+  .res_image_wrapper {
+    aspect-ratio: 16 / 10;
+  }
+
+  .res_card_content {
+    padding: 14px;
+  }
+
+  .res_name {
+    font-size: 16px;
+  }
+
+  .res_cuisines {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .res_price,
+  .res_delivery {
+    font-size: 11px;
+  }
+
+  .rating_badge,
+  .delivery_badge {
+    padding: 6px 9px;
+    font-size: 11px;
+  }
+
+  .favorite_btn {
+    width: 34px;
+    height: 34px;
+
+    font-size: 19px;
+  }
+
+  /* Always show arrow on touch devices */
+  .res_arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+  .res_card {
+    border-radius: 15px;
+  }
+
+  .res_image_wrapper {
+    aspect-ratio: 1.5 / 1;
+  }
+
+  .res_card_content {
+    padding: 12px;
+  }
+
+  .res_name {
+    font-size: 15px;
+  }
+
+  .res_cuisines {
+    margin-top: 6px;
+    margin-bottom: 10px;
+  }
+
+  .rating_badge {
+    left: 9px;
+    bottom: 9px;
+  }
+
+  .delivery_badge {
+    right: 9px;
+    bottom: 9px;
+  }
+
+  .favorite_btn {
+    top: 9px;
+    right: 9px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 350px) {
+  .res_image_wrapper {
+    aspect-ratio: 1.4 / 1;
+  }
+
+  .delivery_badge {
+    display: none;
+  }
+
+  .res_card_content {
+    padding: 11px;
+  }
+
+  .res_meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+.favorite_btn:focus-visible {
+  outline: 3px solid rgba(255, 90, 54, 0.35);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .res_card,
+  .res_image,
+  .favorite_btn,
+  .res_arrow,
+  .card_hover_line,
+  .res_image_wrapper::after {
+    transition: none;
+  }
+
+  .res_card:hover {
+    transform: none;
+  }
+
+  .res_card:hover .res_image {
+    transform: none;
+  }
+
+  .res_card:hover .res_image_wrapper::after {
+    display: none;
+  }
+}

@@ -1,0 +1,554 @@
+/* =========================================================
+   SHIMMER CONTAINER
+========================================================= */
+
+.shimmer_container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  padding: 24px;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 24px;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   SHIMMER CARD
+========================================================= */
+
+.shimmer_card {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  border: 1px solid rgba(15, 23, 42, 0.06);
+
+  box-shadow:
+    0 8px 25px rgba(15, 23, 42, 0.05),
+    0 2px 6px rgba(15, 23, 42, 0.03);
+
+  animation:
+    shimmerCardEnter 0.55s ease both,
+    shimmerFloat 4s ease-in-out infinite;
+
+  isolation: isolate;
+}
+
+
+/* =========================================================
+   MOVING SHIMMER LIGHT
+========================================================= */
+
+.shimmer_card::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -150%;
+
+  width: 70%;
+  height: 100%;
+
+  z-index: 10;
+
+  pointer-events: none;
+
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 65%,
+    transparent 100%
+  );
+
+  transform: skewX(-18deg);
+
+  animation: shimmerWave 1.8s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   IMAGE SKELETON
+========================================================= */
+
+.shimmer_image {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e9edf2,
+      #f5f7f9,
+      #e5e9ee
+    );
+
+  background-size: 200% 200%;
+
+  animation: shimmerBackground 2.2s ease infinite;
+}
+
+
+/* =========================================================
+   IMAGE INNER GLOW
+========================================================= */
+
+.shimmer_image::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.6),
+      transparent 35%
+    );
+
+  opacity: 0.45;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.shimmer_content {
+  padding: 17px;
+
+  background: #ffffff;
+}
+
+
+/* =========================================================
+   GENERIC SKELETON LINE
+========================================================= */
+
+.shimmer_line {
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #edf0f3 0%,
+      #f7f8f9 50%,
+      #edf0f3 100%
+    );
+
+  background-size: 200% 100%;
+
+  animation: shimmerLine 1.6s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.shimmer_title {
+  width: 72%;
+  height: 19px;
+
+  margin-bottom: 11px;
+
+  border-radius: 7px;
+
+  animation-delay: 0.08s;
+}
+
+
+/* =========================================================
+   CUISINE
+========================================================= */
+
+.shimmer_cuisine {
+  width: 88%;
+  height: 11px;
+
+  margin-bottom: 17px;
+
+  animation-delay: 0.16s;
+}
+
+
+/* =========================================================
+   RATING
+========================================================= */
+
+.shimmer_rating {
+  width: 42%;
+  height: 11px;
+
+  margin-bottom: 10px;
+
+  animation-delay: 0.24s;
+}
+
+
+/* =========================================================
+   DELIVERY
+========================================================= */
+
+.shimmer_delivery {
+  width: 58%;
+  height: 10px;
+
+  animation-delay: 0.32s;
+}
+
+
+/* =========================================================
+   STAGGER CARDS
+========================================================= */
+
+.shimmer_card:nth-child(1) {
+  animation-delay: 0s, 0s;
+}
+
+.shimmer_card:nth-child(2) {
+  animation-delay: 0.05s, 0.3s;
+}
+
+.shimmer_card:nth-child(3) {
+  animation-delay: 0.1s, 0.6s;
+}
+
+.shimmer_card:nth-child(4) {
+  animation-delay: 0.15s, 0.9s;
+}
+
+.shimmer_card:nth-child(5) {
+  animation-delay: 0.2s, 1.2s;
+}
+
+.shimmer_card:nth-child(6) {
+  animation-delay: 0.25s, 1.5s;
+}
+
+.shimmer_card:nth-child(7) {
+  animation-delay: 0.3s, 1.8s;
+}
+
+.shimmer_card:nth-child(8) {
+  animation-delay: 0.35s, 2.1s;
+}
+
+
+/* =========================================================
+   CARD ENTER ANIMATION
+========================================================= */
+
+@keyframes shimmerCardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   SUBTLE FLOAT
+========================================================= */
+
+@keyframes shimmerFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+
+/* =========================================================
+   MAIN SHIMMER WAVE
+========================================================= */
+
+@keyframes shimmerWave {
+  0% {
+    left: -150%;
+  }
+
+  45%,
+  100% {
+    left: 160%;
+  }
+}
+
+
+/* =========================================================
+   IMAGE GRADIENT ANIMATION
+========================================================= */
+
+@keyframes shimmerBackground {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  50% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+
+/* =========================================================
+   TEXT SHIMMER
+========================================================= */
+
+@keyframes shimmerLine {
+  0% {
+    background-position: 150% 0;
+  }
+
+  100% {
+    background-position: -150% 0;
+  }
+}
+
+
+/* =========================================================
+   LARGE TABLET / SMALL DESKTOP
+========================================================= */
+
+@media (max-width: 1200px) {
+  .shimmer_container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+
+    padding: 22px;
+  }
+
+  .shimmer_card {
+    border-radius: 20px;
+  }
+}
+
+
+/* =========================================================
+   TABLET / iPAD
+========================================================= */
+
+@media (max-width: 900px) {
+  .shimmer_container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    padding: 20px;
+  }
+
+  .shimmer_content {
+    padding: 15px;
+  }
+
+  .shimmer_title {
+    height: 17px;
+  }
+}
+
+
+/* =========================================================
+   iPAD MINI / MOBILE TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+  .shimmer_container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+
+    padding: 16px;
+  }
+
+  .shimmer_card {
+    border-radius: 18px;
+  }
+
+  .shimmer_content {
+    padding: 14px;
+  }
+
+  .shimmer_image {
+    aspect-ratio: 16 / 10;
+  }
+
+  .shimmer_title {
+    width: 75%;
+    height: 16px;
+
+    margin-bottom: 10px;
+  }
+
+  .shimmer_cuisine {
+    width: 85%;
+    height: 10px;
+
+    margin-bottom: 14px;
+  }
+
+  .shimmer_rating,
+  .shimmer_delivery {
+    height: 9px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+  .shimmer_container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 13px;
+
+    padding: 14px;
+  }
+
+  .shimmer_card {
+    border-radius: 16px;
+  }
+
+  .shimmer_content {
+    padding: 12px;
+  }
+
+  .shimmer_title {
+    width: 78%;
+    height: 15px;
+  }
+
+  .shimmer_cuisine {
+    width: 90%;
+    height: 9px;
+  }
+
+  .shimmer_rating {
+    width: 45%;
+    height: 9px;
+  }
+
+  .shimmer_delivery {
+    width: 60%;
+    height: 8px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 430px) {
+  .shimmer_container {
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+
+    padding: 14px;
+  }
+
+  .shimmer_card {
+    border-radius: 17px;
+  }
+
+  .shimmer_image {
+    aspect-ratio: 16 / 9;
+  }
+
+  .shimmer_content {
+    padding: 14px;
+  }
+
+  .shimmer_title {
+    width: 65%;
+    height: 17px;
+  }
+
+  .shimmer_cuisine {
+    width: 82%;
+    height: 10px;
+  }
+
+  .shimmer_rating {
+    width: 35%;
+    height: 10px;
+  }
+
+  .shimmer_delivery {
+    width: 48%;
+    height: 9px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL DEVICES
+========================================================= */
+
+@media (max-width: 350px) {
+  .shimmer_container {
+    padding: 10px;
+
+    gap: 13px;
+  }
+
+  .shimmer_card {
+    border-radius: 15px;
+  }
+
+  .shimmer_content {
+    padding: 12px;
+  }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .shimmer_card,
+  .shimmer_card::before,
+  .shimmer_image,
+  .shimmer_line {
+    animation: none;
+  }
+}
