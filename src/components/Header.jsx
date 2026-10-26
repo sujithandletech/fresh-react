@@ -1,14 +1,19 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./Header.css";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
   const [loginBtn, setLoginBtn] = useState("Login");
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const onlineStatus = useOnlineStatus();
+
+  const {loggedInUser} = useContext(UserContext);
+  console.log(loggedInUser);
+  
 
   // Header shadow/background when scrolling
   useEffect(() => {
@@ -156,6 +161,8 @@ const Header = () => {
                   <span className="login_text">{loginBtn}</span>
                 </button>
               </li>
+
+              <li className="px-4 font-bold">{loggedInUser}</li>
               
             </ul>
           </nav>

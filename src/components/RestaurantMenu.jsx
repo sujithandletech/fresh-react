@@ -4,12 +4,18 @@ import { CDN_URL, menuItems, resApi } from "../utils/constants";
 import { useParams } from "react-router-dom";
 import "./RestaurantMenu.css";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCatogory";
+import resdata from "../utils/resmenu";
 
 const RestaurantMenu = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [cartCount, setCartCount] = useState(0);
 
+  const [showIndex, setShowIndex] = useState(null);
+
   const { resId } = useParams();
+
+  const dummy = "Dummy Data";
 
   const restaurant = useRestaurantMenu(resId);
 
@@ -40,11 +46,21 @@ const RestaurantMenu = () => {
     locality,
   } = restaurant?.info || {};
 
-    const handleAddToCart = () => {
+  const handleAddToCart = () => {
     setCartCount((count) => count + 1);
   };
 
-  console.log("Cloudinary Image ID:", name);
+  // console.log("Cloudinary Image ID:", name);
+
+  const regularCards =
+    resdata?.data?.cards?.[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards ?? [];
+
+  const categories = regularCards.filter(
+    (item) =>
+      item?.card?.card?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory",
+  );
+  // console.log("res data here", resdata);
 
   return (
     <div className="restaurant-page">
@@ -276,6 +292,18 @@ const RestaurantMenu = () => {
           <button>View Cart →</button>
         </div>
       )}
+
+      {categories.map((item, index) => (
+        <RestaurantCategory
+        key={item.card.card.title + index}
+        category={item.card.card}
+        showItems={index === showIndex}
+        setShowIndex={()=> setShowIndex(showIndex === index ? null :index)}
+        dummy={dummy}
+      />
+      ))
+      }
+      
     </div>
   );
 };

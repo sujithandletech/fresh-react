@@ -72,3 +72,13 @@ useEffect(() => {
     -secondChild component DidMount
 
 -parent component DidMount
+
+- i will do dark and light theme using usecontexta
+
+# Redux Toolkit
+- install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to our app
+- Slice (cartSlice)
+- dispatch(action)
+- Selector

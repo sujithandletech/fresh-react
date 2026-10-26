@@ -1,5 +1,8 @@
+import { useContext } from "react";
 import { CDN_URL } from "../utils/constants";
 import './ResturantCard.css'
+import UserContext from "../utils/UserContext";
+
 
 const ResturantCard = ({ resData }) => {
   const {
@@ -12,6 +15,8 @@ const ResturantCard = ({ resData }) => {
     locality,
     areaName,
   } = resData?.info || {};
+
+  const {loggedInUser} = useContext(UserContext)
 
   const deliveryTime = sla?.deliveryTime;
 
@@ -88,6 +93,7 @@ const ResturantCard = ({ resData }) => {
           <p className="res_location">
             <span>📍</span>
             {areaName || locality}
+            {loggedInUser}
           </p>
         )}
       </div>
@@ -97,5 +103,25 @@ const ResturantCard = ({ resData }) => {
     </article>
   );
 };
+
+// Higher Order Component
+
+// input - RestaurantCard => RestaurantCardVeg
+export const withVegLabelCard = (ResturantCard) => {
+  return (props) => {
+    const isVeg = props.resData?.info?.veg === true;
+
+    return (
+      <div className="relative">
+        {
+          isVeg && (
+            <label className="absolute top-3 left-3 z-10 rounded-md bg-green-600 px-3 py-1 text-sm font-bold text-white shadow-md">veg</label>
+          )
+        }
+        <ResturantCard {...props}/>
+      </div>
+    )
+  }
+}
 
 export default ResturantCard;

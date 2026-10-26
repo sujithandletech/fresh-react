@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
+import UserContext from "../utils/UserContext";
 
 const User = ({name}) => {
     const [count, setCount] = useState(0)
     // const [count2, setCount2] = useState(2)
+
+    const {loggedInUser} = useContext(UserContext)
 
     useEffect(() => {
         console.log("useEffect called");
@@ -44,6 +47,7 @@ const User = ({name}) => {
         <h4>Order Count: {count}</h4>
         {/* <h4>Order Count 2: {count2}</h4> */}
         <button onClick={increasefunction}>increase</button>
+        <h5>{loggedInUser}</h5>
     </div>
     );
 }

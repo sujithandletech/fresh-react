@@ -13,7 +13,7 @@ const useRestaurantMenu = (resId) => {
         try {
             const response = await fetch(resApi);
             const json = await response.json();
-            console.log("Complete API response:", json);
+            // console.log("Complete API response:", json);
 
             const cards = json?.data?.cards ?? [];
 
@@ -24,7 +24,7 @@ const useRestaurantMenu = (resId) => {
 
             const restaurants = restaurantCard?.card?.card?.gridElements?.infoWithStyle?.restaurants ?? [];
 
-            console.log("All Restaurants:", restaurants);
+            // console.log("All Restaurants:", restaurants);
 
             // find the restaurant with the matching resId
             const selectedRestaurant = restaurants.find(

@@ -1,3 +1,4 @@
+import Rough from "./Rough";
 const Grocery = () => {
   return (
     <div>
@@ -5,6 +6,8 @@ const Grocery = () => {
         {" "}
         Our grocery online store, and we have a lot of child components inside this web page !!
     </h1>
+    <Rough/>
+
     </div>
   );
 };

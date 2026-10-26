@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import ResturantCard from "./ResturantCard";
+import { useState, useEffect, useContext } from "react";
+import ResturantCard, { withVegLabelCard } from "./ResturantCard";
 import Shimmer from "./Shimmer";
 import { Search_logo } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listofRestaurants, setListofRestaurants] = useState([]);
@@ -13,6 +14,8 @@ const Body = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
   const [activeFilter, setActiveFilter] = useState("all");
+
+  const RestaurantCardveg = withVegLabelCard(ResturantCard);
 
   // console.log("Body rendered");
 
@@ -35,7 +38,7 @@ const Body = () => {
 
       const json = await response.json();
 
-      console.log("API Response:", json);
+      // console.log("API Response:", json);
 
       // Get all cards safely
       const cards = json?.data?.cards ?? [];
@@ -52,8 +55,8 @@ const Body = () => {
         restaurantCard?.card?.card?.gridElements?.infoWithStyle?.restaurants ??
         [];
 
-      console.log("Restaurant Card:", restaurantCard);
-      console.log("Restaurants:", restaurants);
+      // console.log("Restaurant Card:", restaurantCard);
+      // console.log("Restaurants helllo:", restaurants);
 
       setListofRestaurants(restaurants);
       setFilteredRestaurant(restaurants);
@@ -140,6 +143,8 @@ const Body = () => {
     return <Shimmer />;
   }
 
+  const { loggedInUser, setUserName } = useContext(UserContext);
+
   // ERROR
   if (error) {
     return (
@@ -165,7 +170,6 @@ const Body = () => {
 
   return (
     <main className="body">
-      
       {/* HERO */}
 
       <section className="body_hero">
@@ -189,9 +193,7 @@ const Body = () => {
         <div className="hero_food_emoji">🍔</div>
       </section>
 
-      {/* =====================================
-          FILTER / SEARCH
-      ====================================== */}
+      {/* FILTER / SEARCH */}
 
       <section className="filter">
         <div className="search">
@@ -253,11 +255,19 @@ const Body = () => {
             Top Rated
           </button>
         </div>
+
+        <div className="">
+          <label htmlFor="">UserName:</label>
+          <input
+            type="text"
+            className="border p-1"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
       </section>
 
-      {/* =====================================
-          RESULT HEADER
-      ====================================== */}
+      {/* RESULT HEADER */}
 
       <div className="result_header">
         <div>
@@ -279,9 +289,7 @@ const Body = () => {
         )}
       </div>
 
-      {/* =====================================
-          EMPTY STATE
-      ====================================== */}
+      {/*  EMPTY STATE */}
 
       {filteredRestaurant.length === 0 ? (
         <div className="empty_restaurants">
@@ -304,7 +312,11 @@ const Body = () => {
               to={`/restaurant/${restaurant?.info?.id}`}
               key={restaurant?.info?.id}
             >
-              <ResturantCard resData={restaurant} />
+              {restaurant?.info?.veg === true ? (
+                <RestaurantCardveg resData={restaurant} />
+              ) : (
+                <ResturantCard resData={restaurant} />
+              )}
             </Link>
           ))}
         </div>
